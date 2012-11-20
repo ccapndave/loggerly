@@ -1,0 +1,19 @@
+/* CSS declarations go here */
+body,
+input,
+button,
+select,
+textarea,
+.navbar-search .search-query {
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+.hero-unit {
+	background-image: url(/img/log.jpg);
+	background-repeat: no-repeat;
+	color: #000000;
+}
+
+.hero-unit small {
+	color: #525252;
+}
