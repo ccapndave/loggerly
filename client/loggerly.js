@@ -3,11 +3,11 @@ _.extend(Template.testbar, {
     events: {
         "click #testInfoButton": function(e) {
             e.preventDefault();
-            Logs.addLog(new Date().getTime(), "127.0.0.1", "info", "This is a test info message");
+            Logs.addLog($.now(), "127.0.0.1", "info", "This is a test info message");
         },
         "click #testWarningButton": function(e) {
             e.preventDefault();
-            Logs.addLog(new Date().getTime(), "127.0.0.1", "warn", "This is a test warning message");
+            Logs.addLog($.now(), "127.0.0.1", "warn", "This is a test warning message");
         },
         "click #testErrorButton": function(e) {
             e.preventDefault();
@@ -20,7 +20,7 @@ _.extend(Template.testbar, {
             a = a + " mx.core::UIComponent/callLaterDispatcher2()[C:\\autobuild\\3.x\\frameworks\\projects\\framework\\src\mx\\core\\UIComponent.as:8892]";
             a = a + "at mx.core::UIComponent/callLaterDispatcher()[C:\\autobuild\\3.x\\frameworks\\projects\\framework\src\mx\\core\\UIComponent.as:8832]";
 
-            Logs.addLog(new Date().getTime(), "127.0.0.1", "error", a);
+            Logs.addLog($.now(), "127.0.0.1", "error", a);
         }
     }
 });

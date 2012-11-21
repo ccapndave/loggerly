@@ -19,7 +19,7 @@ Meteor.startup(function() {
             var jsonRequestData = JSON.parse(requestData);
             Fiber(function() {
                 try {
-                    jsonRequestData.timestamp = new Date().getTime();
+                    jsonRequestData.timestamp = $.now();
                     jsonRequestData.source = req.headers["x-forwarded-for"];
                     Logs.collection.insert(jsonRequestData);
                 } catch (e) {
