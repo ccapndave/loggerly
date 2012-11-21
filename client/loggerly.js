@@ -41,9 +41,7 @@ _.extend(Template.testbar, {
 
     _.extend(Template.toolbar, {
         events: {
-            "click #toggleInfoButton": toggleAndRefreshButton,
-            "click #toggleWarnButton": toggleAndRefreshButton,
-            "click #toggleErrorButton": toggleAndRefreshButton
+            "click .btn.level": toggleAndRefreshButton
         }
     })
 })();

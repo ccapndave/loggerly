@@ -28,9 +28,11 @@
 		<input type="text" class="search-query" placeholder="Search">
 
 		<div class="btn-group">
-			<button id="toggleInfoButton" data-level="info" class="btn btn-info active" >Info</button>
-			<button id="toggleWarnButton" data-level="warn" class="btn btn-warning active">Warn</button>
-			<button id="toggleErrorButton" data-level="error" class="btn btn-danger active">Error</button>
+			<button data-level="debug" class="level btn btn-success active" >Debug</button>
+			<button data-level="info" class="level btn btn-info active" >Info</button>
+			<button data-level="warn" class="level btn btn-warning active">Warn</button>
+			<button data-level="error" class="level btn btn-danger active">Error</button>
+			<button data-level="fatal" class="level btn btn-inverse active">Fatal</button>
 		</div>
 
 		<div class="btn-group">
@@ -58,7 +60,7 @@
 		</tr>
 
 		{{#each logs}}
-		<tr class="error {{logLevelClass level}}">
+		<tr class="{{logLevelClass level}}">
 			<td class="span2" >{{formatDate timestamp}}</td>
 			<td class="span2">{{source}}</td>
 			<td class="span8">{{message}}</td>

@@ -1,3 +1,5 @@
+// curl -d '{"level": "debug", "message": "hello" }' http://localhost:3000/log
+
 Meteor.startup(function() {
     var doJsonResponse = function(response, statusCode, body) {
         response.statusCode = statusCode;
@@ -17,6 +19,9 @@ Meteor.startup(function() {
             var jsonRequestData = JSON.parse(requestData);
             Fiber(function() {
                 try {
+                    console.log(req);
+                    jsonRequestData.timestamp = new Date().getTime();
+                    //jsonRequestData.source =
                     Logs.collection.insert(jsonRequestData);
                 } catch (e) {
                     return doJsonResponse(res, 500, JSON.stringify({ error: e.toString(), success: false }));

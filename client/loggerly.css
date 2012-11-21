@@ -17,3 +17,8 @@ textarea,
 .hero-unit small {
 	color: #525252;
 }
+
+.table tbody tr.inverse td {
+	background-color: #898989;
+	color: #ffffff;
+}

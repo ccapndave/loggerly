@@ -4,12 +4,16 @@ Handlebars.registerHelper("formatDate", function(timestamp) {
 
 Handlebars.registerHelper("logLevelClass", function(level) {
     switch (level) {
+        case "debug":
+            return "success";
         case "info":
             return "info";
         case "warn":
             return "warning";
         case "error":
             return "error";
+        case "fatal":
+            return "inverse";
         default:
             return "";
     }
