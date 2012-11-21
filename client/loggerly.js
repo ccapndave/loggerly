@@ -53,6 +53,9 @@ _.extend(Template.testbar, {
 /** Grid view **/
 _.extend(Template.grid, {
     logs: function() {
-        return Logs.getAllLogs({ levels: Session.get("selectedLevels"), searchTerm: Session.get("searchTerm") });
+        /*var logs = Logs.getAllLogs({ levels: Session.get("selectedLevels"), searchTerm: Session.get("searchTerm") });
+        return logs.fetch().splice(0, 10);*/
+        //return Logs.getLogs({ levels: Session.get("selectedLevels"), searchTerm: Session.get("searchTerm") });
+        return Logs.collection.find();
     }
 });
