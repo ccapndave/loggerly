@@ -33,11 +33,15 @@ Logs = {
         return this.collection.insert({ timestamp: timestamp, source: source, level: level, message: message });
     },
 
-    getAllLogs: function(levels) {
+    getAllLogs: function(options) {
         var fields = {};
 
-        if (levels && levels !== undefined) {
-            fields.level = { $in: levels };
+        if (options.levels && options.levels !== undefined) {
+            fields.level = { $in: options.levels };
+        }
+
+        if (options.searchTerm && options.searchTerm !== undefined) {
+            fields.message = { $regex: ".*" + options.searchTerm + ".*", $options: "i" };
         }
 
         return this.collection.find(fields, { sort: { "timestamp": -1 }});

@@ -41,7 +41,11 @@ _.extend(Template.testbar, {
 
     _.extend(Template.toolbar, {
         events: {
-            "click .btn.level": toggleAndRefreshButton
+            "click .btn.level": toggleAndRefreshButton,
+            "input .search-query": function(e) {
+                var searchTerm = $(e.currentTarget).val() || undefined;
+                Session.set("searchTerm", searchTerm);
+            }
         }
     })
 })();
@@ -49,6 +53,6 @@ _.extend(Template.testbar, {
 /** Grid view **/
 _.extend(Template.grid, {
     logs: function() {
-        return Logs.getAllLogs(Session.get("selectedLevels"));
+        return Logs.getAllLogs({ levels: Session.get("selectedLevels"), searchTerm: Session.get("searchTerm") });
     }
 });
