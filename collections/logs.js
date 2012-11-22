@@ -1,39 +1,7 @@
-/*Scribbles = {
-    collection: new Meteor.Collection("scribbles"),
-
-    getAllScribbles: function() {
-        return Scribbles.collection.find({}, { fields: { moves: false } });
-    },
-
-    getCompletedScribbles: function() {
-        return Scribbles.collection.find({ completed: true }, { fields: { moves: false } });
-    },
-
-    getScribble: function(scribbleId) {
-        return Scribbles.collection.find({ _id: scribbleId });
-    }
-
-}
+Logs = new Meteor.Collection("logs");
 
 if (Meteor.isServer) {
-    Meteor.publish("Scribbles.getAllScribbles", Scribbles.getAllScribbles);
-    Meteor.publish("Scribbles.getCompletedScribbles", Scribbles.getCompletedScribbles);
-    Meteor.publish("Scribbles.getScribble", Scribbles.getScribble);
-}
-
-if (Meteor.isClient) {
-    Meteor.subscribe("Scribbles.getAllScribbles");
-    Meteor.subscribe("Scribbles.getCompletedScribbles");
-    Meteor.subscribe("Scribbles.getScribble", Session.get("currentScribbleId"));
-}*/
-Logs = {
-    collection: new Meteor.Collection("logs"),
-
-    addLog: function(timestamp, source, level, message) {
-        return this.collection.insert({ timestamp: timestamp, source: source, level: level, message: message });
-    },
-
-    getLogs: function(options) {
+    Meteor.publish("logs", function(options) {
         var fields = {};
 
         if (options.levels && options.levels !== undefined) {
@@ -44,18 +12,13 @@ Logs = {
             fields.message = { $regex: ".*" + options.searchTerm + ".*", $options: "i" };
         }
 
-        return Logs.collection.find(fields, { sort: { "timestamp": -1 } });
-    }
-
-}
-
-if (Meteor.isServer) {
-    Meteor.publish("Logs.getLogs", Logs.getLogs);
+        return Logs.find(fields, { sort: { "timestamp": -1 } });
+    });
 }
 
 if (Meteor.isClient) {
     Meteor.autosubscribe(function() {
-        Meteor.subscribe("Logs.getLogs", { levels: Session.get("selectedLevels"), searchTerm: Session.get("searchTerm") });
+        Meteor.subscribe("logs", { levels: Session.get("selectedLevels"), searchTerm: Session.get("searchTerm") });
     });
 }
 
