@@ -65,13 +65,13 @@
                                 Logs.remove( { level: { $nin: [ "error", "fatal" ] } } );
                                 break;
                             case "older-than-hour":
-                                Logs.remove( { timestamp: { $lt: (1).hour().ago() } } );
+                                Logs.remove( { timestamp: { $lt: (1).hour().ago().getTime() } } );
                                 break;
                             case "older-than-day":
-                                Logs.remove( { timestamp: { $lt: (1).day().ago() } } );
+                                Logs.remove( { timestamp: { $lt: (1).day().ago().getTime() } } );
                                 break;
                             case "older-than-week":
-                                Logs.remove( { timestamp: { $lt: (1).week().ago() } } );
+                                Logs.remove( { timestamp: { $lt: (1).week().ago().getTime() } } );
                                 break;
                             case "all":
                                 Logs.remove();
